@@ -1,0 +1,12 @@
+{
+  "name": "example",
+  "private": true,
+  "scripts": {
+    "start": "parcel src/index.html --no-cache"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.7.1",
+    "parcel-plugin-surplus": "^1.1.5",
+    "typescript": "^2.8.3"
+  }
+}

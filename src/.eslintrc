@@ -1,0 +1,10 @@
+{
+  "parser": "babel-eslint",
+  "extends": "prettier-standard",
+  "env": {
+    "jest": true
+  },
+  "globals": {
+    "expect": true
+  }
+}

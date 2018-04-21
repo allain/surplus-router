@@ -1,7 +1,7 @@
 import * as Surplus from 'surplus';
 import S from 's-js';
 
-import {Route} from 'surplus-router'
+import {Route} from '@allain/surplus-router'
 
 const HomePage = () => <div>
   <h1>Welcome</h1>

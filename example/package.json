@@ -7,6 +7,8 @@
   "devDependencies": {
     "parcel-bundler": "^1.7.1",
     "parcel-plugin-surplus": "^1.1.5",
-    "typescript": "^2.8.3"
-  }
+    "s-js": "^0.4.8",
+    "surplus": "^0.5.2",
+    "@allain/surplus-router": "^0.1.0"
+   }
 }

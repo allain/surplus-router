@@ -15,7 +15,10 @@ export default {
       format: 'es'
     }
   ],
-  external: ['s-js'],
+  external: [
+    's-js', 
+    'path-to-regexp'
+  ],
   plugins: [
     surplus(),
     babel({

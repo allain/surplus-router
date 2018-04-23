@@ -1,18 +1,20 @@
 // NOTE: Taken from react-router
-const pathToRegexp = require('path-to-regexp')
+import pathToRegexp from 'path-to-regexp'
 
-const patternCache = {}
+type PatternCache = { [key: string]: any }
+const patternCache: PatternCache = {}
+
 const cacheLimit = 10000
 let cacheCount = 0
 
-const compilePath = (pattern, options) => {
+const compilePath = (pattern: string, options: matchPathOptions): { re: RegExp, keys: pathToRegexp.Key[] } => {
   const cacheKey = `${options.end}${options.strict}${options.sensitive}`
   const cache = patternCache[cacheKey] || (patternCache[cacheKey] = {})
 
   if (cache[pattern]) return cache[pattern]
 
-  const keys = []
-  const re = pathToRegexp(pattern, keys, options)
+  const keys: pathToRegexp.Key[] = []
+  const re: RegExp = pathToRegexp(pattern, keys, options)
   const compiledPattern = { re, keys }
 
   if (cacheCount < cacheLimit) {
@@ -23,10 +25,18 @@ const compilePath = (pattern, options) => {
   return compiledPattern
 }
 
+type matchPathOptions = {
+  path?: string,
+  exact?: boolean,
+  strict?: boolean,
+  sensitive?: boolean,
+  end?: boolean
+}
+
 /**
  * Public API for matching a URL pathname to a path pattern.
  */
-const matchPath = (pathname, options = {}, parent) => {
+const matchPath = (pathname: string, options: matchPathOptions = {}, parent: any) => {
   if (typeof options === 'string') options = { path: options }
 
   const { path, exact = false, strict = false, sensitive = false } = options
@@ -47,7 +57,7 @@ const matchPath = (pathname, options = {}, parent) => {
     path, // the path pattern used to match
     url: path === '/' && url === '' ? '/' : url, // the matched portion of the URL
     isExact, // whether or not we matched exactly
-    params: keys.reduce((memo, key, index) => {
+    params: keys.reduce((memo: { [key: string]: string }, key, index) => {
       memo[key.name] = values[index]
       return memo
     }, {})

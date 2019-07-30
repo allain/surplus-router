@@ -1,28 +1,29 @@
-import surplus from 'rollup-plugin-surplus';
-import babel from 'rollup-plugin-babel'
+import surplus from "rollup-plugin-surplus"
+import babel from "rollup-plugin-babel"
+import fs from "fs"
+import path from "path"
 
-import pkg from './package.json'
+const pkg = JSON.parse(
+  fs.readFileSync(path.join(__dirname, "package.json"), "utf-8")
+)
 
 export default {
-  input:'src/index.js',
+  input: "src/index.js",
   output: [
     {
       file: pkg.main,
-      format: 'cjs'
+      format: "cjs"
     },
     {
       file: pkg.module,
-      format: 'es'
+      format: "es"
     }
   ],
-  external: [
-    's-js', 
-    'path-to-regexp'
-  ],
+  external: ["s-js", "path-to-regexp"],
   plugins: [
     surplus(),
     babel({
-      exclude: 'node_modules/**/*.js'
+      exclude: "node_modules/**/*.js"
     })
   ]
 }
